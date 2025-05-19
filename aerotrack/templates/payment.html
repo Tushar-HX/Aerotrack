@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Make Payment 💳</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <form method="POST" class="card p-4 shadow-sm bg-light">
+
+        <!-- Payment Method -->
+        <div class="mb-3">
+          <label for="method" class="form-label fw-bold">Payment Method</label>
+          <select id="method" name="method" class="form-select" required onchange="togglePaymentFields()">
+            <option value="" disabled selected>Select a method</option>
+            <option value="upi">UPI</option>
+            <option value="card">Card</option>
+          </select>
+        </div>
+
+        <!-- UPI Fields -->
+        <div id="upiFields" class="mb-3 d-none">
+          <label for="upi_id" class="form-label">UPI ID</label>
+          <input type="text" id="upi_id" name="upi_id" class="form-control" placeholder="example@upi">
+        </div>
+
+        <!-- Card Fields -->
+        <div id="cardFields" class="mb-3 d-none">
+          <label class="form-label">Card Details</label>
+          <input type="text" name="card_name" class="form-control mb-2" placeholder="Cardholder Name">
+          <input type="text" name="card_number" class="form-control mb-2" placeholder="Card Number">
+          <div class="row">
+            <div class="col">
+              <input type="text" name="expiry" class="form-control" placeholder="MM/YY">
+            </div>
+            <div class="col">
+              <input type="text" name="cvv" class="form-control" placeholder="CVV">
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-success px-4">Make Payment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Script to toggle fields -->
+<script>
+  function togglePaymentFields() {
+    const method = document.getElementById("method").value;
+    const upi = document.getElementById("upiFields");
+    const card = document.getElementById("cardFields");
+
+    if (method === "upi") {
+      upi.classList.remove("d-none");
+      card.classList.add("d-none");
+    } else if (method === "card") {
+      card.classList.remove("d-none");
+      upi.classList.add("d-none");
+    } else {
+      upi.classList.add("d-none");
+      card.classList.add("d-none");
+    }
+  }
+</script>
+
+{% endblock %}

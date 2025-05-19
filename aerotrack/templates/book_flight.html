@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container my-5">
+  <h2 class="text-center mb-4">Confirm Your Booking ✈️</h2>
+
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+      <form method="POST" class="card shadow-sm p-4 bg-light">
+
+        <!-- Passenger Info -->
+        <div class="mb-3">
+          <label for="name" class="form-label fw-bold">Full Name</label>
+          <input type="text" name="name" id="name" class="form-control" placeholder="e.g. Rahul Sharma" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="contact" class="form-label fw-bold">Contact Info</label>
+          <input type="text" name="contact" id="contact" class="form-control" placeholder="Phone or Email" required>
+        </div>
+
+        <!-- Seat Map -->
+        <div class="text-center mb-4">
+          <div class="seat-map mx-auto">
+            {% for row in range(1, 6) %}
+              <div class="d-flex justify-content-center mb-2">
+                {% for col in ['A', 'B', 'C', 'D'] %}
+                  {% set seat_number = col ~ row %}
+                  <label class="seat m-1">
+                    <input type="radio" name="seat" value="{{ seat_number }}" required>
+                    <div class="seat-box">{{ seat_number }}</div>
+                  </label>
+                  {% if col == 'B' %}
+                    <div class="aisle-space"></div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endfor %}
+          </div>
+          <small class="text-muted">Click on a seat to select it</small>
+        </div>
+
+        <!-- Meal Preference -->
+        <div class="mb-3">
+          <label class="form-label fw-bold">Meal Preference</label>
+          <select name="meal" class="form-select" required>
+            <option value="" disabled selected>Select a meal</option>
+            <option value="veg">Vegetarian</option>
+            <option value="non-veg">Non-Vegetarian</option>
+          </select>
+        </div>
+
+        <!-- Submit -->
+        <div class="text-center">
+          <button class="btn btn-primary px-4">Confirm Booking</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Seat Map Styling -->
+<style>
+  .seat input[type="radio"] {
+    display: none;
+  }
+
+  .seat-box {
+    width: 50px;
+    height: 50px;
+    background-color: #dee2e6;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .seat-box:hover {
+    background-color: #ced4da;
+  }
+
+  .seat input[type="radio"]:checked + .seat-box {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0a58ca;
+  }
+
+  .aisle-space {
+    width: 30px;
+  }
+
+  @media (max-width: 576px) {
+    .seat-box {
+      width: 40px;
+      height: 40px;
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+{% endblock %}

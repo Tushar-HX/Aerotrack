@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center">
+  <h2 class="mb-3">Welcome to FlyHigh ✈️</h2>
+  <p class="lead">Your one-stop platform for booking flights with ease and comfort.</p>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">✈️ Book Flights</h5>
+          <p class="card-text">Search and book domestic or international flights.</p>
+          <a href="/flights" class="btn btn-primary">Search Flights</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">👤 Profile</h5>
+          <p class="card-text">Manage your passenger details and preferences.</p>
+          <a href="/profile" class="btn btn-primary">View Profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">📝 Feedback</h5>
+          <p class="card-text">Have suggestions or issues? Let us know!</p>
+          <a href="/feedback" class="btn btn-primary">Send Feedback</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
