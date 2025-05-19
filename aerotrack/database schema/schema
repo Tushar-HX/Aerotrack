@@ -1,0 +1,80 @@
+Database Schema Description for the Flight Booking System:
+The database schema for the flight booking system defines the structure of the database used to manage users, flights, bookings, payments, and feedback. It outlines how data is stored, related, and retrieved efficiently.
+
+Key Components of the Schema:
+The schema consists of several tables, each serving a specific purpose:
+
+Users Table:
+Purpose: Stores information about registered users.
+Columns:
+id (Primary Key) - Unique identifier for each user.
+username - The user's chosen name.
+email - User's email address (unique).
+password - Hashed password for authentication.
+
+Passengers Table:
+Purpose: Stores passenger details linked to registered users.
+Columns:
+id (Primary Key) - Unique passenger ID.
+user_id (Foreign Key) - Links to the users table.
+full_name - Passenger's full name.
+passport_number - Passport details (if applicable).
+contact_info - Contact details for communication.
+Relationships:
+Uses ON DELETE CASCADE to remove passenger data if the user is deleted.
+
+Flights Table:
+Purpose: Stores available flight information.
+Columns:
+id (Primary Key) - Unique flight ID.
+flight_number - Unique identifier for the flight.
+source - Departure city or airport.
+destination - Arrival city or airport.
+departure - Date and time of departure.
+arrival - Date and time of arrival.
+price - Ticket cost.
+Description:
+Manages flight schedules and fares.
+
+Bookings Table:
+Purpose: Stores user bookings linked to flights.
+Columns:
+id (Primary Key) - Unique booking ID.
+user_id (Foreign Key) - Links to the 
+
+users table.
+flight_id (Foreign Key) - Links to the flights table.
+passenger_name - Name of the passenger.
+contact_info - Passenger's contact information.
+seat_number - Assigned seat number.
+meal_preference - Chosen meal option.
+Relationships:
+Uses ON DELETE CASCADE to automatically remove bookings when the user or flight is deleted.
+
+Payments Table:
+Purpose: Stores payment details related to bookings.
+Columns:
+id (Primary Key) - Unique payment ID.
+booking_id (Foreign Key) - Links to the bookings table.
+method - Payment method (UPI or card).
+card_name, card_number, expiry, cvv - Card details.
+upi_id - UPI payment ID.
+bank_name and account_number - Bank details for direct payments.
+Relationships:
+Uses ON DELETE CASCADE to remove payment data when the associated booking is deleted.
+
+Feedback Table:
+Purpose: Stores user feedback messages.
+Columns:
+id (Primary Key) - Unique feedback ID.
+user_id (Foreign Key) - Links to the users table.
+message - User's feedback message.
+submitted_at - Timestamp of submission.
+Relationships:
+Uses ON DELETE CASCADE to remove feedback when the user is deleted.
+
+Schema Characteristics:
+Normalization: Avoids data redundancy by using separate tables and foreign keys.
+Data Integrity: Uses foreign key constraints to maintain consistency.
+Security: Hashed passwords and structured user data to ensure secure authentication.
+Flexibility: The use of CASCADE allows automatic removal of related data when a user or booking is deleted.
