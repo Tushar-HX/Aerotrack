@@ -1,1 +1,10 @@
-
+Templates Directory:
+Contains HTML files for various web pages:
+User Authentication: login.html, signup.html
+Flight Management: search_flight.html, book_flight.html
+Booking Confirmation: booking_success.html
+User Profile: profile.html
+Feedback: feedback.html
+Support: support.html
+Dashboard: dashboard.html
+Base Layout: base.html for consistent page structure
